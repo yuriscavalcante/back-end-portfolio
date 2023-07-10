@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  database:
+    image: postgres
+    container_name: database_product_manager
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=chUtr_ylt8Uw!?c@lSpL
+      - POSTGRES_DB=product_manager
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local
+  cache:
+    driver: local
