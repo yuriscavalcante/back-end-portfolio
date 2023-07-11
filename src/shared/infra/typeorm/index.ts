@@ -2,6 +2,7 @@ import { config } from "dotenv";
 import { DataSource, DataSourceOptions } from "typeorm";
 import { SeederOptions } from "typeorm-extension";
 import { Signale } from "signale";
+import { MainSeeder } from "./seeds/mainSeeder";
 
 config();
 
@@ -14,6 +15,7 @@ const options: DataSourceOptions & SeederOptions = {
   database: process.env.DB_DATABASE,
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
   entities: ["./src/modules/**/infra/typeorm/entities/*.ts"],
+  seeds: [MainSeeder],
 };
 
 export const AppSource = new DataSource(options);

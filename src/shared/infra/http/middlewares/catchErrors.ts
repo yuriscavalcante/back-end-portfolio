@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { GeneralErrors } from "../../errors/GeneralErrors";
-import { NotFound } from "../../errors/NotFound";
-import { TokenError } from "../../errors/TokenError";
+import { GeneralErrors } from "../../../errors/GeneralErrors";
+import { NotFound } from "../../../errors/NotFound";
+import { TokenError } from "../../../errors/TokenError";
 
 export const catchErrors = (
   err: Error,
