@@ -1,6 +1,7 @@
 import { Segments, celebrate } from "celebrate";
 import { Router } from "express";
 import Joi from "joi";
+import { AuthorizeUserController } from "modules/users/useCases/authorizeUser/AuthorizeUserController";
 import { CreateUserController } from "modules/users/useCases/createUser/CreateUserController";
 import { DeleteUserController } from "modules/users/useCases/deleteUser/DeleteUserController";
 import { FindUserByIdController } from "modules/users/useCases/findUserById/FindUserByIdController";
@@ -13,10 +14,30 @@ const deleteUserController = new DeleteUserController();
 const findByIdController = new FindUserByIdController();
 const findUserController = new FindUserController();
 const updateUserController = new UpdateUserController();
+const authorizeUserController = new AuthorizeUserController();
 
 userRoutes.get("/:id", findByIdController.handle);
 
 userRoutes.get("/", findUserController.handle);
+
+userRoutes.post(
+  "/login",
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().required().messages({
+        "string.base": `"email" deve ser uma string`,
+        "string.empty": `"email" não pode ser um campo vazio`,
+        "any.required": `"email" é um campo requerido`,
+      }),
+      password: Joi.string().required().messages({
+        "string.base": `"password" deve ser uma string`,
+        "string.empty": `"password" não pode ser um campo vazio`,
+        "any.required": `"password" é um campo requerido`,
+      }),
+    },
+  }),
+  authorizeUserController.handle
+);
 
 userRoutes.post(
   "/",
@@ -81,3 +102,5 @@ userRoutes.put(
 );
 
 userRoutes.delete("/:id", deleteUserController.handle);
+
+export { userRoutes };

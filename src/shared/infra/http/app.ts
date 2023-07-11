@@ -4,6 +4,8 @@ import { InitializeConnection } from "../typeorm";
 import cors from "cors";
 import { Routes } from "./routes";
 import { errors } from "celebrate";
+import "reflect-metadata";
+import "../../container";
 config();
 
 const app = express();
