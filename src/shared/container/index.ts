@@ -5,8 +5,10 @@ import { UsersRepositoryProps } from "../../modules/users/repository/UsersReposi
 import { HashProvider } from "../../shared/providers/HashProvider/HashProvider";
 import { HashProviderProps } from "../../shared/providers/HashProvider/HashProviderProps";
 import { container } from "tsyringe";
-import { DateProviderProps } from "shared/providers/DateProvider/DateProviderProps";
-import { DateProvider } from "shared/providers/DateProvider/DateProvider";
+import { DateProviderProps } from "../../shared/providers/DateProvider/DateProviderProps";
+import { DateProvider } from "../../shared/providers/DateProvider/DateProvider";
+import { CompanyRepositoryProps } from "../../modules/companies/repositories/CompanyRepositoryProps";
+import { CompanyRepository } from "../../modules/companies/infra/typeorm/repositories/CompanyRepository";
 
 container.registerSingleton<UsersRepositoryProps>(
   "UsersRepository",
@@ -18,3 +20,7 @@ container.registerSingleton<UsersTokensRepositoryProps>(
   UsersTokensRepository
 );
 container.registerSingleton<DateProviderProps>("DateProvider", DateProvider);
+container.registerSingleton<CompanyRepositoryProps>(
+  "CompanyRepository",
+  CompanyRepository
+);
