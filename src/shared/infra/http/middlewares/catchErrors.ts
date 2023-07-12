@@ -3,7 +3,7 @@ import { GeneralErrors } from "../../../errors/GeneralErrors";
 import { NotFound } from "../../../errors/NotFound";
 import { TokenError } from "../../../errors/TokenError";
 
-export const catchErrors = (
+export const catchErros = (
   err: Error,
   req: Request,
   res: Response,

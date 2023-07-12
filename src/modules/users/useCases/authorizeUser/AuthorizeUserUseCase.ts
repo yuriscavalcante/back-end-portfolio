@@ -5,12 +5,17 @@ import { HashProviderProps } from "shared/providers/HashProvider/HashProviderPro
 import { inject, injectable } from "tsyringe";
 import { sign } from "jsonwebtoken";
 import { auth } from "config/auth";
+import { UsersTokensRepositoryProps } from "modules/users/repository/UsersTokensRepositoryProps";
+import { DateProviderProps } from "shared/providers/DateProvider/DateProviderProps";
 
 @injectable()
 export class AuthorizeUserUseCase {
   constructor(
     @inject("UsersRepository") private usersRepository: UsersRepositoryProps,
-    @inject("HashProvider") private hashProvider: HashProviderProps
+    @inject("UsersTokensRepository")
+    private usersTokensRepository: UsersTokensRepositoryProps,
+    @inject("HashProvider") private hashProvider: HashProviderProps,
+    @inject("DateProvider") private dateProvider: DateProviderProps
   ) {}
 
   public async execute({ email, password }: LoginDto) {
@@ -36,6 +41,27 @@ export class AuthorizeUserUseCase {
       subject: String(isUser.id),
       expiresIn: auth.expires_in_refresh_token,
     });
+
+    const userToken = await this.usersTokensRepository.findByUserId(isUser.id);
+
+    if (!userToken) {
+      await this.usersTokensRepository.create({
+        user_id: isUser.id,
+        token: token,
+        refresh_token: refresh_token,
+        expireAt: this.dateProvider.addDays(auth.expires_in_refresh_token_days),
+      });
+    }
+    if (userToken) {
+      const id = userToken.id;
+      await this.usersTokensRepository.updateToken({
+        id: id,
+        user_id: isUser.id,
+        token: token,
+        refresh_token: refresh_token,
+        expireAt: this.dateProvider.addDays(auth.expires_in_refresh_token_days),
+      });
+    }
 
     return { user: isUser, token, refresh_token };
   }

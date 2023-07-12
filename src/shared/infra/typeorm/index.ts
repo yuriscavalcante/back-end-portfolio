@@ -2,7 +2,7 @@ import { config } from "dotenv";
 import { DataSource, DataSourceOptions } from "typeorm";
 import { SeederOptions } from "typeorm-extension";
 import { Signale } from "signale";
-import { MainSeeder } from "./seeds/mainSeeder";
+import { MainSeeder } from "./seeds/MainSeeder";
 
 config();
 
