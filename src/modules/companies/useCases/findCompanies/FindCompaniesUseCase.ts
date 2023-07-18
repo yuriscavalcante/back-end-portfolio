@@ -9,6 +9,8 @@ export class FindCompaniesUseCase {
   ) {}
 
   public async execute(query: any) {
-    return await this.companiesRepository.find(query);
+    const [list, total] = await this.companiesRepository.find(query);
+
+    return [list, total];
   }
 }

@@ -8,8 +8,8 @@ export class FindCompaniesController {
 
     const findCompaniesUseCase = container.resolve(FindCompaniesUseCase);
 
-    const company = await findCompaniesUseCase.execute(query);
+    const [list, total] = await findCompaniesUseCase.execute(query);
 
-    return res.status(200).json({ message: "Companies!", company });
+    return res.status(200).json({ message: "Companies!", list, total });
   }
 }

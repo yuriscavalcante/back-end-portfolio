@@ -17,11 +17,12 @@ export class CompanyRepository implements CompanyRepositoryProps {
     return newCompany;
   }
 
-  async find(query: any): Promise<Company[]> {
-    return await this.companyRepository.find({
+  async find(query: any): Promise<any> {
+    const [list, total] = await this.companyRepository.findAndCount({
       skip: query.skip,
       take: 10,
     });
+    return [list, total];
   }
 
   async findById(id: string): Promise<Company | null> {

@@ -3,7 +3,7 @@ import { Company } from "../infra/typeorm/entities/Company";
 
 export interface CompanyRepositoryProps {
   create(company: CreateCompaniesDto): Promise<Company>;
-  find(query: any): Promise<Company[]>;
+  find(query: any): Promise<any>;
   findById(id: string): Promise<Company | null>;
   findByCnpj(cnpj: string): Promise<Company | null>;
   update(company: Company): Promise<Company>;
