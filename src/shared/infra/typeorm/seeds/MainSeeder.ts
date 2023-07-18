@@ -21,111 +21,24 @@ export class MainSeeder implements Seeder {
     };
     const newUser = usersRepository.create(user);
     await usersRepository.save(newUser);
-    const [list, total] = await companyRepository.findAndCount();
 
-    let i = 0;
-    const company = [
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-      {
-        name: "Silva e Pelaquim Associados LTDA",
-        acronym: "SPA",
-        cnpj: "56.938.372/0001-1",
-        phoneNumber: "(17)7065-3638",
-        email: "spa@email-br.com",
-      },
-    ];
-    for (let c of company) {
-      Object.assign(c, {
-        name: c.name + (total + i),
-        acronym: c.acronym + (total + i),
-        cnpj: c.cnpj + (total + i),
+    const company = {
+      name: "Silva e Pelaquim Associados LTDA",
+      acronym: "SPA",
+      cnpj: "56.938.372/0001-1",
+      phoneNumber: "(17)7065-3638",
+      email: "spa@email-br.com",
+    };
+
+    for (let i = 0; i <= 55; i++) {
+      const newCompany = companyRepository.create({
+        name: company.name + i,
+        acronym: company.acronym + i,
+        cnpj: company.cnpj + i,
+        phoneNumber: company.phoneNumber + i,
+        email: company.email + i,
       });
-      const newCompany = companyRepository.create(c);
       await companyRepository.save(newCompany);
-      i++;
     }
   }
 }
