@@ -14,6 +14,7 @@ export class UpdateUserUseCase {
     name,
     email,
     birthDate,
+    company,
     documents,
     phoneNumber,
   }: UpdateUsersDto) {
@@ -29,6 +30,7 @@ export class UpdateUserUseCase {
       name,
       email,
       birthDate,
+      company,
       documents,
       phoneNumber,
     });

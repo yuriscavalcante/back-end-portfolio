@@ -16,7 +16,31 @@ export class UsersRepository implements UsersRepositoryProps {
     return newUsers;
   }
   async find(query: any): Promise<Users[]> {
-    return await this.users.find();
+    return await this.users.find({
+      loadEagerRelations: false,
+      select: {
+        id: true,
+        name: true,
+        birthDate: true,
+        company: {
+          id: true,
+          name: true,
+          acronym: true,
+        },
+        email: true,
+        documents: true,
+        isAdmin: true,
+        phoneNumber: true,
+      },
+      where: {
+        company: {
+          id: query.company,
+        },
+      },
+      relations: {
+        company: true,
+      },
+    });
   }
   async findByEmail(email: string): Promise<Users | null> {
     return await this.users.findOne({

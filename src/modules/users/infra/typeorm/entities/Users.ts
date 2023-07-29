@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Company } from "../../../../companies/infra/typeorm/entities/Company";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 } from "uuid";
 
 @Entity("users")
@@ -17,6 +18,12 @@ export class Users {
 
   @Column()
   password: string;
+
+  @ManyToOne(() => Company, {
+    nullable: true,
+  })
+  @JoinColumn({ name: "company" })
+  company: Company;
 
   @Column({ nullable: true })
   documents: string;

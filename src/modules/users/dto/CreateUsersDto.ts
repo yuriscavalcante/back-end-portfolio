@@ -1,3 +1,5 @@
+import { Company } from "modules/companies/infra/typeorm/entities/Company";
+
 export class CreateUsersDto {
   name: string;
   email: string;
@@ -9,5 +11,5 @@ export class CreateUsersDto {
   birthDate: string;
   phoneNumber: string;
   // department: Department
-  // company: Company
+  company: Company;
 }

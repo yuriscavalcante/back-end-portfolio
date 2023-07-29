@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { CreateCompanyController } from "modules/companies/useCases/createCompany/CreateCompanyController";
 import { DeleteCompanyController } from "modules/companies/useCases/deleteCompany/DeleteCompanyController";
-import { FindCompaniesController } from "modules/companies/useCases/findCompanies/findCompaniesController";
 import { FindCompanyByIdController } from "modules/companies/useCases/findCompanyById/FindCompanyByIdController";
 import { UpdateCompanyController } from "modules/companies/useCases/updateCompany/UpdateCompanyController";
 import { Segments, celebrate } from "celebrate";
 import Joi from "joi";
+import { FindCompaniesController } from "modules/companies/useCases/findCompanies/FindCompaniesController";
 
 const companiesRoutes = Router();
 const createCompanyController = new CreateCompanyController();

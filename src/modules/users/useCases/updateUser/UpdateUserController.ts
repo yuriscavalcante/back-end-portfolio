@@ -5,13 +5,15 @@ import { UpdateUserUseCase } from "./UpdateUserUseCase";
 export class UpdateUserController {
   public async handle(req: Request, res: Response) {
     const id = req.params.id;
-    const { name, email, documents, birthDate, phoneNumber } = req.body;
+    const { name, email, documents, birthDate, phoneNumber, company } =
+      req.body;
 
     const updateUserUseCase = container.resolve(UpdateUserUseCase);
 
     const user = await updateUserUseCase.execute({
       id,
       name,
+      company,
       email,
       documents,
       birthDate,

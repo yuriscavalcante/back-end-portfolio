@@ -63,6 +63,9 @@ userRoutes.post(
         "string.empty": `"confirmPassword" não pode ser um campo vazio`,
         "any.required": `"confirmPassword" é um campo requerido`,
       }),
+      company: Joi.string().messages({
+        "string.base": `"company" deve ser uma string`,
+      }),
       documents: Joi.string().messages({
         "string.base": `"documents" deve ser uma string`,
       }),
@@ -86,6 +89,9 @@ userRoutes.put(
       }),
       email: Joi.string().messages({
         "string.base": `"email" deve ser uma string`,
+      }),
+      company: Joi.string().messages({
+        "string.base": `"company" deve ser uma string`,
       }),
       documents: Joi.string().messages({
         "string.base": `"documents" deve ser uma string`,

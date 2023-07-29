@@ -22,11 +22,6 @@ export class UpdateCompanyUseCase {
     const isCompany = await this.companiesRepository.findById(id);
     if (!isCompany) throw new NotFound("Company não encontrada");
 
-    if (cnpj) {
-      const hasDuplicate = await this.companiesRepository.findByCnpj(cnpj);
-      if (hasDuplicate) throw new GeneralErrors("CNPJ já cadastrado!");
-    }
-
     Object.assign(isCompany, {
       name: name,
       acronym: acronym,
